@@ -1,0 +1,101 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: {
+    typeName: 'Sell Order',
+    typeNamePlural: 'Sell Orders',
+    imageUrl: 'ImageUrl',
+    title: {
+        type: #STANDARD,
+        value: 'IdHeader' }},
+            
+presentationVariant: [{
+    sortOrder: [{ by: 'IdHeader',
+                  direction: #DESC }],
+    visualizations: [ { type: #AS_LINEITEM } ] }]}
+
+annotate entity Z_C_HEADER_8150
+    with 
+{
+    @UI.facet: [{
+      id: 'Head',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      position: 10,
+      label: 'Order'
+  },
+    
+  {
+      id: 'Items',
+      type: #LINEITEM_REFERENCE,
+      purpose: #STANDARD,
+      position: 20,
+      label: 'Items',
+      targetElement: '_Items'}]
+  
+  @UI: { lineItem: [{
+      position: 10,
+      importance: #HIGH},
+      
+      { type: #FOR_ACTION,
+      dataAction: 'accepted',
+      label: 'Accept Order',
+      position: 30 },
+
+      { type: #FOR_ACTION,
+      dataAction: 'rejected',
+      label: 'Reject Order',
+      position: 40 }],
+  
+      identification: [{ position: 10 }],
+      selectionField: [{ position: 10 }]}     
+  IdHeader;
+  
+  @UI: { lineItem: [{
+      position: 15,
+      importance: #HIGH}],
+      identification: [{ position: 15, label: 'Email'}]}
+  Email;
+  
+  @UI: { lineItem: [{
+      position: 20,
+      importance: #HIGH}],
+      identification: [{ position: 20, label: 'Firstname' }]}
+  Firstname;
+  
+  @UI: { lineItem: [{
+      position: 30,
+      importance: #HIGH}],
+      identification: [{ position: 30, label: 'Lastname' }]}
+  Lastname;
+  
+  @UI: { lineItem: [{
+      position: 40,
+      importance: #MEDIUM}],
+      identification: [{ position: 40, label: 'Country' }]}
+  Country;
+  
+  @UI: { lineItem: [{
+      position: 50,
+      importance: #MEDIUM}],
+      identification: [{ position: 50, label: 'Create On' }]}
+  Creaton;
+  
+  @UI: { lineItem: [{
+      position: 60,
+      importance: #MEDIUM}],
+      identification: [{ position: 60, label: 'Delivery Date' }]}
+  DeliveryDate;
+  
+  @UI: { lineItem: [{
+      position: 70,
+      importance: #MEDIUM,
+      criticality: 'OrderStatus'}],
+      identification: [{ position: 70, label: 'Order Status' }],
+      selectionField: [{ position: 20 }],
+      textArrangement: #TEXT_ONLY }
+  OrderStatus;
+
+  @UI.hidden: true
+  ImageUrl;
+    
+}

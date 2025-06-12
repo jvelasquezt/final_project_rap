@@ -1,0 +1,69 @@
+managed implementation in class zbp_r_header_8150 unique;
+strict ( 2 );
+
+define behavior for Z_R_HEADER_8150 alias Header
+persistent table ztheader_8150
+lock master
+authorization master ( instance, global )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Items { create; }
+
+  field ( mandatory : create  ) IdHeader, Email;
+  field ( readonly : update ) IdHeader;
+
+  mapping for ztheader_8150
+    {
+      IdHeader     = id_header;
+      Email        = email;
+      Firstname    = firstname;
+      Lastname     = lastname;
+      Country      = country;
+      Creaton      = creaton;
+      DeliveryDate = delivery_date;
+      OrderStatus  = order_status;
+      ImageUrl     = image_url;
+    }
+
+  determination setDate on save { create; }
+  determination setStatusToOpen on modify { create; }
+  determination setImageUrl on save { create; }
+
+  action ( features : instance, authorization : update ) accepted result [1] $self;
+  action ( features : instance, authorization : update ) rejected result [1] $self;
+
+}
+
+define behavior for Z_R_ITEMS_8150 alias Items
+persistent table ztitems_8150
+lock dependent by _Header
+authorization dependent by _Header
+//etag master <field_name>
+{
+  update;
+  delete;
+  association _Header;
+  field ( mandatory : create, readonly : update ) IdItem;
+  field ( readonly ) IdHeader;
+  field ( features : instance ) Price;
+
+  mapping for ztitems_8150
+    {
+      IdItem           = id_item;
+      IdHeader         = id_header;
+      Name             = name;
+      Description      = description;
+      Releasedate      = releasedate;
+      Discontinueddate = discontinueddate;
+      Price            = price;
+      CurrencyCode     = currency_code;
+      Height           = height;
+      Width            = width;
+      Depth            = depth;
+      Quantity         = quantity;
+      UnitOfMeasure    = unit_of_measure;
+    }
+}
