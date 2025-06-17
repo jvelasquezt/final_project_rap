@@ -162,6 +162,5 @@
      IF sy-subrc EQ 0.
        out->write( | { sy-dbcnt } registros insertados| ).
      ENDIF.
-
    ENDMETHOD.
  ENDCLASS.
