@@ -12,8 +12,8 @@ authorization master ( instance, global )
   delete;
   association _Items { create; }
 
-  field ( mandatory : create  ) IdHeader, Email;
-  field ( readonly : update ) IdHeader;
+  field ( mandatory : create , readonly : update ) IdHeader;
+  field ( mandatory : create  ) Email;
 
   mapping for ztheader_8150
     {

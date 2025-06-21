@@ -62,6 +62,15 @@ annotate entity Z_C_HEADER_8150
       identification: [{ position: 20, label: 'Firstname' }]}
   Firstname;
   
+    @UI: { lineItem: [{
+      position: 25,
+      importance: #MEDIUM,
+      criticality: 'OrderStatus'}],
+      identification: [{ position: 105, label: 'Order Status' }],
+      selectionField: [{ position: 20 }],
+      textArrangement: #TEXT_ONLY }
+  OrderStatus;
+  
   @UI: { lineItem: [{
       position: 30,
       importance: #HIGH}],
@@ -73,6 +82,8 @@ annotate entity Z_C_HEADER_8150
       importance: #MEDIUM}],
       identification: [{ position: 40, label: 'Country' }]}
   Country;
+  
+
   
   @UI: { lineItem: [{
       position: 50,
@@ -86,14 +97,6 @@ annotate entity Z_C_HEADER_8150
       identification: [{ position: 60, label: 'Delivery Date' }]}
   DeliveryDate;
   
-  @UI: { lineItem: [{
-      position: 70,
-      importance: #MEDIUM,
-      criticality: 'OrderStatus'}],
-      identification: [{ position: 70, label: 'Order Status' }],
-      selectionField: [{ position: 20 }],
-      textArrangement: #TEXT_ONLY }
-  OrderStatus;
 
   @UI.hidden: true
   ImageUrl;

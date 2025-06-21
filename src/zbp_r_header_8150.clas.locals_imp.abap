@@ -49,10 +49,11 @@ CLASS lhc_Z_R_HEADER_8150 IMPLEMENTATION.
 
     CHECK status IS NOT INITIAL.
 
+
     MODIFY ENTITIES OF z_r_header_8150 IN LOCAL MODE
     ENTITY Header
     UPDATE FIELDS ( OrderStatus )
-    WITH VALUE #( FOR statu IN status INDEX INTO i ( %tky = statu-%tky
+    WITH VALUE #( FOR statu IN status INDEX INTO i  ( %tky = statu-%tky
                                                      OrderStatus = open ) ).
   ENDMETHOD.
 
